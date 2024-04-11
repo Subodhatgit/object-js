@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <link rel="stylesheet" href="Virgil.woff2">
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+    <title>Library</title>
+</head>
+<body>
+    <div class="maindiv">
+   <header class="header">
+    <h1>Library</h1>
+    <img src="library.svg" alt="">
+
+    </header>
+   <main>
+        <div class="userInputArea">
+            <div class="name">
+                <p>Name</p>
+                <input  type="text">
+            </div>
+            <div class="author">
+                <p>Author</p>
+                <input type="text">
+            </div>
+            <div class="pages">
+                <p>Pages</p>
+                <input type="number">
+            </div>
+            <div class="read">
+                <p>Reading Status</p>
+                <ul>
+                    <li>
+                        <label for="checkbox1">Read</label>
+                <input id="checkbox1"  type="radio" name="readingStatusForBooks" value="Read">
+                
+                    </li>
+                    <li>
+                        <label for="checkbox2">Reading</label>
+                <input id="checkbox2" type="radio" name="readingStatusForBooks" value="Reading">
+                
+                    </li>
+                    <li>
+                        <label for="checkbox3">Plan to Read</label>
+                <input id="checkbox3" type="radio" name="readingStatusForBooks" value="Plan to Read">
+           
+                    </li>
+                </ul>
+                
+            </div>
+        </div>
+
+        <div class="buttons">
+            <button id="addToLib">Add to Library</button>
+        </div>
+        
+   </main>
+
+   <section>
+    <div class="library">
+        <p class="tempText">You currently don't have any books in library.<br>
+        Click the button below to add your favourite books!
+        </p>
+        <div class="buttons">
+            <button id="addToLib">Add to Library</button>
+        </div>
+        
+        
+
+    </div>
+
+   </section>
+</div>
+</body>
+</html>
