@@ -9,7 +9,7 @@
         const tableOfBooks = document.querySelector("table");
         let checkedValue=null;
         let display=0;
-
+        const close2 =document.querySelector(".closedialog");
         
 
 
@@ -50,18 +50,13 @@
 
 //adding event listener for closing dialog and adding book to array //
 
-            close.addEventListener("click",()=>{
-                
-                addNewBook();
-                createTable();
-                
-                
-                console.log(myLibrary);
-                dialog.close();
-                
-           
-
-            });
+                    close.addEventListener("click", () => {
+                        if (checkPage()) {
+                            addNewBook();
+                            createTable();
+                            dialog.close();
+                        }
+                    });
 
 //function for pushing a new book to array//
             function addNewBook(){
@@ -111,7 +106,11 @@
                             const deleteButton = document.createElement("button");
 
                             deleteButton.className = "delete";
-                            deleteButton.textContent = "Remove from Library";
+                            const svg1 = document.querySelector("#mySVG");
+                            let svg2=svg1.cloneNode(true);
+                            deleteButton.appendChild(svg2);
+                            deleteBook.style.display="flex";
+                            deleteBook.style.justifyContent="center";
                             deleteBook.appendChild(deleteButton);
                             newTR.appendChild(deleteBook);
 
@@ -139,4 +138,27 @@
                                 library.insertBefore(pToDelete,library.firstChild); 
                             }
                         }
-                            
+ //function for checking if page number is correct//
+                            function checkPage() {
+                                const numberOfPages1 = document.querySelector(".pages>input").value;
+                                const booktitle = document.querySelector('.name>input').value;
+                                const author = document.querySelector(".author>input").value;
+
+                                if (isNaN(numberOfPages1)) {
+                                    alert("Give a number for pages");
+                                    return false;
+                                }
+
+                                if (booktitle == "" && author == "") {
+                                    alert("At least give a book name or author's name plz");
+                                    return false;
+                                }
+
+                                // If everything is valid, return true
+                                return true;
+                            }                                                  
+//event listener for closing dialog//
+                close2.addEventListener("click",()=>{
+                    dialog.close();
+                    checkIfEmpty();
+                });                        
