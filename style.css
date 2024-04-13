@@ -277,6 +277,7 @@ table{
     button *{
         outline: none;
     }
+    
     button{
         margin: 0;
         outline: none;
@@ -292,9 +293,13 @@ table{
         }
     }
 
-    *{
+    tr,td ,th{
         outline: 1px solid red;
     }
+    p{
+        font-size: 1rem!important;
+    }
+
 }
 section{
     p{
@@ -321,7 +326,17 @@ dialog>div{
     display: flex;
     justify-content: right;
 
-    button{
-
+ 
+}
+#mybutton{
+    width: auto;
+    padding: 0;
+    display: none;
+    svg{
+        width: 20px;
     }
+}
+.newone{
+    display: flex !important;
+    color: black;
 }

@@ -99,8 +99,33 @@
                             newTR.appendChild(pagesTD);
 
                             const readTD=document.createElement('td');
-                            readTD.textContent=myLibrary[i].readingStatus();
+                            const newDiv=document.createElement("div");
+                            const p=document.createElement("p")
+                            const newButton=document.querySelector("#mybutton");
+                            let newButton2=newButton.cloneNode(true);
+                            
+                            p.textContent=myLibrary[i].readingStatus();
+
+                            const array=['Read','Reading','Plan to Read'];
+                            newButton2.addEventListener("click",()=>{
+                                let position=array.indexOf(p.textContent);
+                                position++;
+                                if(position==3){
+                                    position=0;
+                                }
+                                p.textContent=array[position];
+                            })
+                            newButton2.className="newone";
+                            newDiv.appendChild(p);
+                            newDiv.appendChild(newButton2);
+                            readTD.appendChild(newDiv); 
+                            newDiv.style.display="flex"
+                            newDiv.style.justifyContent="center"
+                            newDiv.style.alignItems="center";
+                            newDiv.style.gap="5px"
                             newTR.appendChild(readTD);
+                            
+
 
                             const deleteBook = document.createElement('td');
                             const deleteButton = document.createElement("button");
