@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="Virgil.woff2">
     <link rel="stylesheet" href="style.css">
     <script defer src="script.js"></script>
@@ -12,12 +14,23 @@
 <body>
     <div class="maindiv">
    <header class="header">
-    <h1>Library</h1>
-    <img src="library.svg" alt="">
+    <div class="firstrow">
+        <h1>Library</h1>
+    <img src="library.svg" alt="#">
+   
+    </div>
+     <div class="secondrow">
+        <p class="myStamp">By Subodh Dhungel</p>
+        <a href="https://github.com/Subodhatgit" class="myStampRedirect">
+            <img src="github.svg" alt="#">
+     </a>
 
+    </div>
     </header>
    <main>
+    <dialog class="mainThing">
         <div class="userInputArea">
+
             <div class="name">
                 <p>Name</p>
                 <input  type="text">
@@ -52,11 +65,9 @@
                 
             </div>
         </div>
+        <button class="close">Add Book</button>
+    </dialog>
 
-        <div class="buttons">
-            <button id="addToLib">Add to Library</button>
-        </div>
-        
    </main>
 
    <section>
@@ -65,8 +76,22 @@
         Click the button below to add your favourite books!
         </p>
         <div class="buttons">
-            <button id="addToLib">Add to Library</button>
+            <button id="addToLib"><p>Add to Library</p> 
+            <img src="plus.svg" alt="#">    
+            </button>
         </div>
+        <div class="tableForBooks">
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Pages</th>
+                    <th>Reading Status</th>
+                </tr>
+                
+            </table>
+        </div>
+
         
         
 

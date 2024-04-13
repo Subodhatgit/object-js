@@ -2,6 +2,15 @@
     font-family: 'Virgil';
     src: url('Virgil.woff2') format('woff2');
   }
+
+  @keyframes revolve {
+    from {
+      transform: rotateY(0deg);
+    }
+    to {
+      transform: rotateY(360deg);
+    }
+  }  
   
 
 body{
@@ -16,27 +25,29 @@ body{
     
 }
 body *{
-
-}
-p{
-    font-size: 23px;
+    background-color: white;
+    color: black;
+ 
+    font-family: "Patrick Hand", cursive;
     margin: 0;
-
-
 }
+    
+
+
 @media screen and (max-width: 600px) {
    body{
     padding: 0;
    }
+
 }
 div.maindiv{
     
-    background-color:#413a3a;    
+    background-color:white;    
     box-sizing: border-box;
     text-align: center;
     
     border-radius: 13px;
-    letter-spacing: 2px;
+    
    
    
     flex: 1;
@@ -97,25 +108,63 @@ header{
     text-align: center;
     padding: 0;
     font-size: 30px ;
-    gap: 2vw;
+    
     font-weight: bolder;
-    margin-bottom: 2vw;
-    padding-bottom: 0;
+    margin-bottom: 4vw;
+   
     font-family: "Virgil";
-    display: flex;
+    border-bottom: 1px sold black; 
     align-items: center;
     justify-content: center;
-    flex-direction: row-reverse;
-    background-color: #1a1919;
+   
+    border-bottom: 4px solid red;
+    background-color: #ffffff;
+    color: black;
     padding-top: 2vw;
-    box-shadow: 0px 10px 5px -9px white;
+    box-shadow: 0px 5px 20px -9px red;
 
+            div.firstrow{
+                display: flex;
+                flex-direction: row-reverse;
+                justify-content: center;
+
+                img{
+                    width: 55px;
+                    animation: revolve 5s linear infinite;
+                }
+                img:hover{  
+                   animation: none;
+                    
+                    }
+            }
+            div.secondrow{
+                display: flex;
+                padding-right: 4vw;
+                justify-content: end;
+                font-weight: 100;
+                font-size: 1rem;
+                gap: 3px;
+                p{
+                    margin: 0;
+                }
+                a{
+                    border: none;
+                    cursor: pointer;
+                }
+                img{
+                    width: 20px;
+                    border: none;
+
+                }
+            }
             h1{
                 margin: 0;
+                font-weight:900;
+                margin: 0;
             }
-            img{
-                width: 4vw;
+            
             }
+         
 }
 
 .bookCard{
@@ -123,7 +172,17 @@ header{
 }
 .library{
     display: flex;
-}
+       button{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img{
+            width: 13px;
+        }
+       }
+            
+}     
 
 .userInputArea{
 
@@ -166,9 +225,17 @@ header{
 }
 
 .library{
-    border: 5px solid #545252;
     border-radius: 13px;
     min-width: 33vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+        button{
+            margin-top: 2vw;
+        }
+
 
 }
 .name,
@@ -180,4 +247,14 @@ header{
 }
 label{
     font-size: 13px;
+}
+dialog{
+    width:50vw;
+}
+table{
+    display: none;
+
+    *{
+        border: 1px solid red;
+    }
 }

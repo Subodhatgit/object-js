@@ -1,11 +1,16 @@
  //Variables initialization//
-
-
+        const add = document.querySelector(".add");
+        const close = document.querySelector(".close")
+        const dialog = document.querySelector(".mainThing")
         const readingList = Array.from(document.querySelectorAll('ul input'));
         const pToDelete = document.querySelector('.tempText');
         const addButton = document.querySelector('#addToLib');
         const library=document.querySelector(".library");
+        const tableOfBooks = document.querySelector("table");
         let checkedValue=null;
+        let display=0;
+
+        
 
 
  //Array for storing books//
@@ -27,65 +32,6 @@
         }
     }
 
-  //function to create new books//
-        function createBook(bookName,bookAuthor,numberOfPages){
-            const book = new Book(bookName,bookAuthor,numberOfPages);
-            myLibrary.push(book);
-            return book;
-        }
-
-
-
-//function to create cards of books in the page//
-        function createDivWithP(className,content){
-            let div = document.createElement('div');
-            div.className = className;
-
-            let p =document.createElement('p');
-            p.textContent=className+content;
-            div.appendChild(p);
-
-
-            return div;
-        }
-
- //function for creating library cards//
-
-        function createCard(book){
-
-            //Create main div for book cards//
-                let newBookCard = document.createElement('div');
-                newBookCard.className = 'bookCard' ;  
-
-            //Create child div for main div//
-                let bookName = createDivWithP('bookName',book.name);
-                let bookAuthor = createDivWithP('bookAuthor',book.author);
-                let bookPage = createDivWithP('bookPage',book.pages);
-                let state = book.readingStatus();
-                console.log(state);
-                let bookStatus = createDivWithP('bookStatus',state);
-            
-                 const deleteButton =document.createElement('button');
-                 deleteButton.textContent="Delete"
-                 deleteButton.addEventListener('click',()=>{
-                    newBookCard.remove();
-                });
-                 
-
-            //Appending child div to main div//
-                
-                 newBookCard.appendChild(bookName);
-                 newBookCard.appendChild(bookAuthor);
-                 newBookCard.appendChild(bookPage);
-                 newBookCard.appendChild(deleteButton);
-                 newBookCard.appendChild(bookStatus);
-
-            //Appending main div to body of html//
-              
-                library.appendChild(newBookCard);                   
-        }
-        
-
 
 
 //adding event listener to add to library button//
@@ -94,17 +40,103 @@
             if(pToDelete){
                 pToDelete.remove();
             }
-            const booktitle=document.querySelector('.name>input').value;
-            const author= document.querySelector(".author>input").value;
-            const numberOfPages= document.querySelector(".pages>input").value;
-            const book = createBook(booktitle,author,numberOfPages)
-            createCard(book);
-            console.log(myLibrary);
 
+            dialog.showModal();
+            
+            
         })
 
 
 
-//adding event listener for delete button//
+//adding event listener for closing dialog and adding book to array //
 
-      
+            close.addEventListener("click",()=>{
+                
+                addNewBook();
+                createTable();
+                
+                
+                console.log(myLibrary);
+                dialog.close();
+                
+           
+
+            });
+
+//function for pushing a new book to array//
+            function addNewBook(){
+
+                const booktitle=document.querySelector('.name>input').value;
+                const author= document.querySelector(".author>input").value;
+                const numberOfPages= document.querySelector(".pages>input").value;
+                
+                const newBook = new Book(booktitle,author,numberOfPages)    ;
+                myLibrary.push(newBook);
+                checkIfEmpty();
+                
+            }               
+
+//function for creating table from array//
+                function createTable() {
+                    const check = document.querySelectorAll(".temporary");
+                        if(check) {
+                            check.forEach(function(check1) {
+                                check1.remove();
+                            });
+                        }
+                    if(myLibrary.length != 0) {
+                        
+                        for(let i = 0; i < myLibrary.length; i++) {
+                            let index = i; // Create a new block scope
+                            const newTR = document.createElement('tr');
+                            newTR.className = "temporary";
+
+                            const nameTD = document.createElement('td');
+                            nameTD.textContent = myLibrary[i].name;
+                            newTR.appendChild(nameTD);
+
+                            const authorTD = document.createElement('td');
+                            authorTD.textContent = myLibrary[i].author;
+                            newTR.appendChild(authorTD);
+
+                            const pagesTD = document.createElement('td');
+                            pagesTD.textContent = myLibrary[i].pages;
+                            newTR.appendChild(pagesTD);
+
+                            const readTD=document.createElement('td');
+                            readTD.textContent=myLibrary[i].readingStatus();
+                            newTR.appendChild(readTD);
+
+                            const deleteBook = document.createElement('td');
+                            const deleteButton = document.createElement("button");
+
+                            deleteButton.className = "delete";
+                            deleteButton.textContent = "Remove from Library";
+                            deleteBook.appendChild(deleteButton);
+                            newTR.appendChild(deleteBook);
+
+                            tableOfBooks.appendChild(newTR);
+
+                            deleteButton.addEventListener("click", () => {
+                                const checkTheIndex=myLibrary.indexOf(myLibrary[i]);
+                                myLibrary.splice(checkTheIndex, 1); // Use the block scoped variable
+                                createTable();
+                                checkIfEmpty();
+                            });
+                        }
+                    }
+                }
+
+                    
+//function for checking if array is empty//
+                    function checkIfEmpty(){
+                        
+                            if(myLibrary.length!=0){
+                                tableOfBooks.style.display="block";
+                                pToDelete.remove();
+                            }else{
+                                tableOfBooks.style.display="none";
+                                library.insertBefore(pToDelete,library.firstChild); 
+                            }
+                        }
+                            
